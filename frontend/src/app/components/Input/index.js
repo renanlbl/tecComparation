@@ -20,7 +20,6 @@ export default function Inputs(props) {
           onChange={(e) => handleInputChange(e, input.id)}
         />
         <FaPen />
-        <FaTrash />
         <FaPlus onClick={handleAddMore} />
       </InputWrapper>
     ))

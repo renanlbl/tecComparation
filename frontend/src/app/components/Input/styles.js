@@ -7,15 +7,14 @@ align-items: center;
 margin-bottom: 20px;
 height: 40px;
 position: relative;
+width: 50%;
 
 &::after {
-  content: '';
+  content: 'vs';
+  color: #777;
   display: block;
-  position: absolute;
-  height: 20px;
-  width: 2px;
-  background-color: #ddd;
-  right: -67px;
+  position: absolute;  
+  right: -10px;
   top: 10px;
 }
 
