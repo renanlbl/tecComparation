@@ -1,13 +1,16 @@
 import React from 'react';
 import { Input, InputWrapper } from './styles';
-import { FaPen, FaPlus, FaTrash } from 'react-icons/fa'
+import { FaPen, FaPlus } from 'react-icons/fa'
+
+import Textarea from '../Textarea';
 
 export default function Inputs(props) {
 
   const {
     inputs,
     handleInputChange,
-    handleAddMore
+    handleAddMore,
+    handleShowTextarea
   } = props
 
   return (
@@ -19,8 +22,11 @@ export default function Inputs(props) {
           value={input.value}
           onChange={(e) => handleInputChange(e, input.id)}
         />
-        <FaPen />
-        <FaPlus onClick={handleAddMore} />
+        <div className="icons">
+          <FaPen onClick={(e) => handleShowTextarea(e, input.id)} />
+          <FaPlus onClick={handleAddMore} />
+        </div>
+        {input.text && <Textarea />}
       </InputWrapper>
     ))
   )

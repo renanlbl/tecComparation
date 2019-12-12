@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
 display: flex;
-justify-content: center;
+justify-content: flex-start;
 align-items: center;
-margin-bottom: 20px;
-height: 40px;
+padding: 20px 0;
+flex-direction: column;
 position: relative;
 width: 50%;
+border-bottom: 1px solid #c0cfff;
 
 &::after {
   content: 'vs';
@@ -15,7 +16,7 @@ width: 50%;
   display: block;
   position: absolute;  
   right: -10px;
-  top: 10px;
+  top: 35px;
 }
 
 &:nth-child(2n+2) {
@@ -24,9 +25,22 @@ width: 50%;
   }
 }
 
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+textarea {
+  height: 100px;
+  padding: 10px;
+  resize: none;
+}
+
 
 svg {   
-  height: 100%;    
+  height: 40px;    
   color: #fff;
   width: 40px;
   padding: 0 12px;
@@ -46,5 +60,5 @@ svg {
 
 export const Input = styled.input`  
 padding-left: 7px;
-height: 100%; 
+height: 50px; 
 `

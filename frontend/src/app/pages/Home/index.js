@@ -3,6 +3,7 @@ import { Container, Separator } from './styles';
 import Input from '../../components/Input';
 
 
+
 //import './styles.scss';
 
 export default class Home extends Component {
@@ -11,10 +12,12 @@ export default class Home extends Component {
       {
         id: 1,
         value: '',
+        text: null,
       },
       {
         id: 2,
         value: '',
+        text: null,
       }
     ],
   }
@@ -36,13 +39,23 @@ export default class Home extends Component {
         ...this.state.inputs,
         {
           id: id1 === id2 ? Math.random() : id1,
-          value: ''
+          value: '',
+          text: ''
         },
         {
           id: id2 === id1 ? Math.random() : id2,
-          value: ''
+          value: '',
+          text: ''
         }
       ],
+    })
+  }
+
+  handleShowTextarea = (e, id) => {
+    let input = this.state.inputs.filter(input => input.id === id)
+    input[0].text = true
+    this.setState({
+      input
     })
   }
 
@@ -58,6 +71,7 @@ export default class Home extends Component {
               inputs={inputs}
               handleInputChange={this.handleInputChange}
               handleAddMore={this.handleAddMore}
+              handleShowTextarea={this.handleShowTextarea}
               value={inputs.value}
             />
           </Separator>
