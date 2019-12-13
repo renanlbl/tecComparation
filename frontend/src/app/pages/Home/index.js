@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Container, Separator } from './styles';
 import Input from '../../components/Input';
 
+//components
+import Button from '../../components/Button'
+
 
 
 //import './styles.scss';
@@ -12,12 +15,14 @@ export default class Home extends Component {
       {
         id: 1,
         value: '',
-        text: null,
+        text: '',
+        open: false,
       },
       {
         id: 2,
         value: '',
-        text: null,
+        text: '',
+        open: false,
       }
     ],
   }
@@ -53,7 +58,15 @@ export default class Home extends Component {
 
   handleShowTextarea = (e, id) => {
     let input = this.state.inputs.filter(input => input.id === id)
-    input[0].text = true
+    input[0].open = true
+    this.setState({
+      input
+    })
+  }
+
+  handleTextarea = (e, id) => {
+    let input = this.state.inputs.filter(input => input.id === id)
+    input[0].text = e.target.value
     this.setState({
       input
     })
@@ -72,10 +85,12 @@ export default class Home extends Component {
               handleInputChange={this.handleInputChange}
               handleAddMore={this.handleAddMore}
               handleShowTextarea={this.handleShowTextarea}
+              handleTextarea={this.handleTextarea}
               value={inputs.value}
             />
           </Separator>
         </Container>
+        <Button />
       </div>
     )
   }

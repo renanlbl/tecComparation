@@ -10,7 +10,8 @@ export default function Inputs(props) {
     inputs,
     handleInputChange,
     handleAddMore,
-    handleShowTextarea
+    handleShowTextarea,
+    handleTextarea
   } = props
 
   return (
@@ -26,7 +27,11 @@ export default function Inputs(props) {
           <FaPen onClick={(e) => handleShowTextarea(e, input.id)} />
           <FaPlus onClick={handleAddMore} />
         </div>
-        {input.text && <Textarea />}
+        {input.open && <Textarea
+          handleTextarea={(e) => handleTextarea(e, input.id)}
+          value={input.text}
+        />
+        }
       </InputWrapper>
     ))
   )
