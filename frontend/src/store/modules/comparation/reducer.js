@@ -32,6 +32,10 @@ export const comparation = (state = initialState, action) => {
       )
     case 'SHOW_TEXTAREA':
       return state.map(item => item.id === action.index ? { ...item, open: item.open = true } : item)
+    case 'HANDLE_TEXTAREA':
+      return state.map(item => item.id === action.payload.index ? { ...item, text: action.payload.event.target.value } : item)
+    case 'HANDLE_INPUT':
+      return state.map(item => item.id === action.payload.index ? { ...item, value: action.payload.event.target.value } : item)
     default:
   }
   return state;

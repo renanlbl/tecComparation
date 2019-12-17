@@ -9,9 +9,10 @@ function Inputs(props) {
 
   const {
     inputs,
-    handleInputChange,
+    handleInput,
     addMore,
     showTextarea,
+    handleTextarea
   } = props
 
   return (
@@ -20,26 +21,30 @@ function Inputs(props) {
         <Input
           type="text"
           placeholder="Tecnologia"
-          value={input.value}
-          onChange={(e) => handleInputChange(e, input.id)}
+          value={inputs.value}
+          onChange={(event) => handleInput(event, index)}
         />
+        {/* <input type="text" onChange={handleInput} /> */}
         <div className="icons">
           <FaPen onClick={() => showTextarea(index)} />
           <FaPlus onClick={() => addMore(index)} />
         </div>
-        {input.open && <Textarea />}
+        {input.open && <Textarea handleTextarea={(event) => handleTextarea(event, index)} value={inputs.text} />}
+        {console.log(inputs)}
       </InputWrapper>
     ))
   )
 }
 
 const mapStateToProps = store => ({
-  inputs: store.comparation
+  inputs: store.comparation,
 })
 
 const mapDispatchToProps = dispatch => ({
   addMore: (index) => dispatch({ type: 'ADD_MORE', index }),
   showTextarea: (index) => dispatch({ type: 'SHOW_TEXTAREA', index }),
+  handleTextarea: (event, index) => dispatch({ type: 'HANDLE_TEXTAREA', payload: { event, index } }),
+  handleInput: (event, index) => dispatch({ type: 'HANDLE_INPUT', payload: { event, index } }),
 })
 
 
