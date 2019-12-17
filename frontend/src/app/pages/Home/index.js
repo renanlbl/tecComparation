@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Separator } from './styles';
 import Input from '../../components/Input';
+// import { connect } from 'react-redux';
 
 //components
 import Button from '../../components/Button'
@@ -9,7 +10,7 @@ import Button from '../../components/Button'
 
 //import './styles.scss';
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     inputs: [
       {
@@ -35,34 +36,34 @@ export default class Home extends Component {
     })
   }
 
-  handleAddMore = () => {
-    let id1 = Math.random()
-    let id2 = Math.random()
+  // handleAddMore = () => {
+  //   let id1 = Math.random()
+  //   let id2 = Math.random()
 
-    this.setState({
-      inputs: [
-        ...this.state.inputs,
-        {
-          id: id1 === id2 ? Math.random() : id1,
-          value: '',
-          text: ''
-        },
-        {
-          id: id2 === id1 ? Math.random() : id2,
-          value: '',
-          text: ''
-        }
-      ],
-    })
-  }
+  //   this.setState({
+  //     inputs: [
+  //       ...this.state.inputs,
+  //       {
+  //         id: id1 === id2 ? Math.random() : id1,
+  //         value: '',
+  //         text: ''
+  //       },
+  //       {
+  //         id: id2 === id1 ? Math.random() : id2,
+  //         value: '',
+  //         text: ''
+  //       }
+  //     ],
+  //   })
+  // }
 
-  handleShowTextarea = (e, id) => {
-    let input = this.state.inputs.filter(input => input.id === id)
-    input[0].open = true
-    this.setState({
-      input
-    })
-  }
+  // handleShowTextarea = (e, id) => {
+  //   let input = this.state.inputs.filter(input => input.id === id)
+  //   input[0].open = true
+  //   this.setState({
+  //     input
+  //   })
+  // }
 
   handleTextarea = (e, id) => {
     let input = this.state.inputs.filter(input => input.id === id)
@@ -75,16 +76,16 @@ export default class Home extends Component {
 
   render() {
     const { inputs } = this.state
+    const { addMore, showTextarea } = this.props
 
     return (
       <div className="content">
         <Container>
           <Separator>
             <Input
-              inputs={inputs}
               handleInputChange={this.handleInputChange}
-              handleAddMore={this.handleAddMore}
-              handleShowTextarea={this.handleShowTextarea}
+              handleAddMore={addMore}
+              handleShowTextarea={showTextarea}
               handleTextarea={this.handleTextarea}
               value={inputs.value}
             />
@@ -95,3 +96,11 @@ export default class Home extends Component {
     )
   }
 }
+
+// const mapStateToProps = store => ({
+//   teste: store.comparation
+// })
+
+
+
+export default Home

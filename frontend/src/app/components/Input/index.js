@@ -1,22 +1,22 @@
 import React from 'react';
 import { Input, InputWrapper } from './styles';
 import { FaPen, FaPlus } from 'react-icons/fa'
+import { connect } from 'react-redux';
 
 import Textarea from '../Textarea';
 
-export default function Inputs(props) {
+function Inputs(props) {
 
   const {
     inputs,
     handleInputChange,
-    handleAddMore,
-    handleShowTextarea,
-    handleTextarea
+    addMore,
+    showTextarea,
   } = props
 
   return (
-    inputs && inputs.length % 2 === 0 && inputs.map(input => (
-      <InputWrapper key={input.id}>
+    inputs && inputs.length % 2 === 0 && inputs.map((input, index) => (
+      <InputWrapper key={index}>
         <Input
           type="text"
           placeholder="Tecnologia"
@@ -24,16 +24,23 @@ export default function Inputs(props) {
           onChange={(e) => handleInputChange(e, input.id)}
         />
         <div className="icons">
-          <FaPen onClick={(e) => handleShowTextarea(e, input.id)} />
-          <FaPlus onClick={handleAddMore} />
+          <FaPen onClick={() => showTextarea(index)} />
+          <FaPlus onClick={() => addMore(index)} />
         </div>
-        {input.open && <Textarea
-          handleTextarea={(e) => handleTextarea(e, input.id)}
-          value={input.text}
-        />
-        }
+        {input.open && <Textarea />}
       </InputWrapper>
     ))
   )
-
 }
+
+const mapStateToProps = store => ({
+  inputs: store.comparation
+})
+
+const mapDispatchToProps = dispatch => ({
+  addMore: (index) => dispatch({ type: 'ADD_MORE', index }),
+  showTextarea: (index) => dispatch({ type: 'SHOW_TEXTAREA', index }),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inputs)
