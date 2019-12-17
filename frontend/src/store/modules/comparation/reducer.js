@@ -18,13 +18,13 @@ export const comparation = (state = initialState, action) => {
     case 'ADD_MORE':
       return state.concat(
         {
-          id: action.index + 2,
+          id: action.index + state.length,
           value: '',
           text: '',
           open: false,
         },
         {
-          id: action.index + 3,
+          id: action.index + state.length + 1,
           value: '',
           text: '',
           open: false,
@@ -36,6 +36,7 @@ export const comparation = (state = initialState, action) => {
       return state.map(item => item.id === action.payload.index ? { ...item, text: action.payload.event.target.value } : item)
     case 'HANDLE_INPUT':
       return state.map(item => item.id === action.payload.index ? { ...item, value: action.payload.event.target.value } : item)
+
     default:
   }
   return state;
