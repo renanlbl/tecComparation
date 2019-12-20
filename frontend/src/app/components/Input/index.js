@@ -30,7 +30,6 @@ function Inputs(props) {
           <FaPlus onClick={() => addMore(index)} />
         </div>
         {input.open && <Textarea handleTextarea={(event) => handleTextarea(event, index)} value={inputs.text} />}
-        {console.log(inputs)}
       </InputWrapper>
     ))
   )
